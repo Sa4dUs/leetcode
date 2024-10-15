@@ -1,37 +1,24 @@
-// https://leetcode.com/problems/remove-duplicates-from-sorted-array/description/
+// https://leetcode.com/problems/remove-duplicates-from-sorted-array/
 
-#include <iostream>
-#include <vector>
-using namespace std;
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int n = size(nums);
+        int k = 0;
+        set<int> s;
 
-int removeDuplicates(vector<int>& nums) {
-    int n = size(nums);
-    int k = 0;
+        auto it = nums.begin() + 1;
+        auto lvi = it;
 
-    auto it = nums.begin() + 1;
-    auto lvi = it;
+        while (it < nums.end()) {
+            if (*it != *(it - 1)) {
+                *lvi = *it;
+                ++lvi;
+            }
 
-    while (it < nums.end()) {
-        if (*it != *(it - 1)) {
-            *lvi = *it;
-            ++lvi;
+            ++it;
         }
 
-        ++it;
+        return lvi - nums.begin();
     }
-
-    return lvi - nums.begin();
-}
-
-int main() {
-    vector<int> nums = {1, 1, 2};
-
-    int output = removeDuplicates(nums);
-
-    auto it = nums.begin();
-
-    while (it < nums.begin() + output) {
-        cout << *it << ' ';
-        ++it;
-    }
-}
+};

@@ -1,24 +1,17 @@
-// https://leetcode.com/problems/length-of-last-word/description/
+// https://leetcode.com/problems/length-of-last-word/
 
-#include <iostream>
-using namespace std;
+class Solution {
+public:
+    int lengthOfLastWord(string s) {
+        int cnt = 0;
+        auto it = s.end() - 1;
 
-int lengthOfLastWord(string s) {
-    int cnt = 0;
-    auto it = s.end() - 1;
+        while (*it == ' ')
+            --it;
 
-    while (*it == ' ')
-        --it;
+        while (it >= s.begin() && *it-- != ' ')
+            ++cnt;
 
-    while (it >= s.begin() && *it-- != ' ')
-        ++cnt;
-
-    return cnt;
-}
-
-int main() {
-    string s = "a";
-
-    int output = lengthOfLastWord(s);
-    cout << output;
-}
+        return cnt;
+    }
+};
